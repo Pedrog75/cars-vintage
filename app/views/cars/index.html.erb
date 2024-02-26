@@ -1,2 +1,7 @@
 <h1>Cars#index</h1>
 <p>Find me in app/views/cars/index.html.erb</p>
+<ul>
+  <% @cars.each do |car| %>
+  <li><%= link_to car.name, car_path(car) %></li>
+  <% end %>
+</ul>

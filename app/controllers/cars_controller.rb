@@ -17,6 +17,21 @@ class CarsController < ApplicationController
     @car.save
     redirect_to dashboard_path
   end
+  def edit
+    @car = Car.find(params[:id])
+  end
+
+  def update
+    @car = Car.find(params[:id])
+    @car.update(car_params)
+    redirect_to dashboard_path
+  end
+
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+    redirect_to dashboard_path, status: :see_other
+  end
 
   private
   def car_params

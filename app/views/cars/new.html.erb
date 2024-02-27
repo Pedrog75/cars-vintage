@@ -1,4 +1,7 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col">
 <h3>Enter your car information</h3>
 
 <%= form_with model: @car do |f| %>
@@ -14,3 +17,8 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit %>
 <% end %>
+      
+ 
+      </div>
+  </div>
+</div>

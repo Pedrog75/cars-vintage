@@ -4,10 +4,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    @recent_car = current_user.cars
   end
 
-  def new
-    @car = Car.new
+  def edit
+    
   end
-  #creat a new car a faire 
-end
+
+ end

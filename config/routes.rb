@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "dashboard", to: "pages#dashboard"
+  get "dashboard/:id/edit", to: "pages#edit"
   root "cars#index"
-  resources :cars, only: [:index, :show] do
+
+  resources :cars, only: [:index, :show, :new, :create] do
       resources :bookings, only: [:new, :create]
   end
 
@@ -16,8 +18,6 @@ Rails.application.routes.draw do
     # booking /ACCEPT
     # booking /DENY
   end
-
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

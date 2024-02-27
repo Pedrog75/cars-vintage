@@ -1,1 +1,18 @@
 <h1>Dashboard</h1>
+
+<p>I'm here</p>
+<h2>My offers</h2>
+<% if @recent_car %>
+  <p>Dernière offre de location créée :</p>
+  <ul>
+    <% @recent_car.each do |car|%>
+    <li>Nom de la voiture: <%= car.name %></li>
+    <li>Prix <%= car.price %></li>
+    <li>Catégorie <%= car.category %></li>
+    <% end %>
+  <% else %>
+    <p>Vous n'avez pas encore d'offre</p>
+  </ul>
+<% end %>
+
+<%= link_to "Create an offer", new_car_path %>

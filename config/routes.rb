@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   get "dashboard", to: "pages#dashboard"
   root "cars#index"
   resources :cars, only: [:index, :show]

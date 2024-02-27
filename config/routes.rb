@@ -4,7 +4,21 @@ Rails.application.routes.draw do
   get "dashboard", to: "pages#dashboard"
   get "dashboard/:id/edit", to: "pages#edit"
   root "cars#index"
-  resources :cars, only: [:index, :show, :new, :create]
+
+  resources :cars, only: [:index, :show, :new, :create] do
+      resources :bookings, only: [:new, :create]
+  end
+
+  resources :bookings, only: [] do
+    member do
+      patch 'accept'
+      patch 'deny'
+    end
+    # show, :index dans dashboard
+    # booking /ACCEPT
+    # booking /DENY
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

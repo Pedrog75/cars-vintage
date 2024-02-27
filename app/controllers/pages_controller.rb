@@ -6,8 +6,9 @@ class PagesController < ApplicationController
   def dashboard
     @recent_car = current_user.cars
   end
+
   def edit
     
   end
 
-end
+ end

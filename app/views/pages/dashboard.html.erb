@@ -9,6 +9,8 @@
     <li>Nom de la voiture: <%= car.name %></li>
     <li>Prix <%= car.price %></li>
     <li>Catégorie <%= car.category %></li>
+    <li><%= link_to "Modifier mon offre", edit_car_path(car) %></li>
+    <li><%= link_to "Supprimer mon offre", car_path(car), data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %></li>
     <% end %>
   <% else %>
     <p>Vous n'avez pas encore d'offre</p>

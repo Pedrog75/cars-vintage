@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "dashboard", to: "pages#dashboard"
-  get "dashboard/:id/edit", to: "pages#edit"
+  get "dashboard/:id/edit", to: "pages#edit", as: :edit_offer
+  patch "dashboard/:id/edit", to: "pages#update"
   root "cars#index"
 
-  resources :cars, only: [:index, :show, :new, :create] do
+  resources :cars, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :bookings, only: [:new, :create]
   end
 

@@ -11,6 +11,14 @@ class CarsController < ApplicationController
   def new
     @car = Car.new
   end
-  #creat a new car a faire 
+  def create
+    @car = Car.new(car_params)
+    @car.save
+    redirect_to dashboard_path
+  end
 
+  private
+  def car_params
+    params.require(:car).permit(:name, :category, :description, :price, :user_id)
+  end
 end

@@ -1,2 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+     <h3>Make a booking</h3>
 
-<h1>hello Baptiste</h1>
+<%= form_with(model: [@car, @booking], local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date, class: "form-control", min: Date.today %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date, class: "form-control", min: Date.today %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>

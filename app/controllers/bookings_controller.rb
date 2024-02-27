@@ -17,7 +17,6 @@ before_action :set_car, only: [:new, :create]
     end
   end
 
-  end
   private
 
   def set_car

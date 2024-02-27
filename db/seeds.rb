@@ -7,3 +7,16 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'faker'
+
+user = User.find(1)
+
+10.times do
+  Car.create(
+    name: Faker::Vehicle.make_and_model,
+    category: Faker::Vehicle.version,
+    description: Faker::Vehicle.standard_specs,
+    price: 100,
+    user_id: user.id
+  )
+end

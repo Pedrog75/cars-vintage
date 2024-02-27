@@ -1,2 +1,14 @@
 
 <h1>hello Baptiste</h1>
+
+<%= form_with model: [@car, @booking] do |f| %>
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date %>
+
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date %>
+
+  <%= f.hidden_field :car_id, value: @car.id %>
+
+  <%= f.submit "Book Car" %>
+<% end %>

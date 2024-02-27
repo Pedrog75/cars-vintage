@@ -2,9 +2,16 @@
 <p>Find me in app/views/cars/index.html.erb</p>
 <ul>
   <% @cars.each do |car| %>
-  <li><%= link_to car.name, car_path(car) %></li>
+    <li><%= link_to car.name, car_path(car) %> <%= car.price %>€ <%= car.category %></li>
+    <div class="card-trip">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <div class="card-trip-infos">
+        <div>
+          <h2>Title here</h2>
+          <p>Short description here!</p>
+        </div>
+        <h2 class="card-trip-pricing">£99.99</h2>
+      </div>
+    </div>
   <% end %>
 </ul>
-
-
-

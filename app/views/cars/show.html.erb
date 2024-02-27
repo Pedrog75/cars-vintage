@@ -1,8 +1,14 @@
-<h1>Cars#show</h1>
-<p>Find me in app/views/cars/show.html.erb</p>
-<p><%= @car.name %></p>
-<p><%= @car.category %></p>
-<p><%= @car.description %></p>
-<p><%= @car.price %></p>
 
-<%= link_to 'Book this car', new_car_booking(@car) %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Cars details</h1>
+      <p>You can book this car</p>
+      <p><%= @car.name %></p>
+      <p><%= @car.category %></p>
+      <p><%= @car.description %></p>
+      <p><%= @car.price %></p>
+      <%= link_to 'Book this car', new_car_booking_path(@car) %>
+       </div>
+  </div>
+</div>

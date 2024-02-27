@@ -1,15 +1,26 @@
 
-<h3>Enter your car information</h3>
 
-<%= form_with model: @car do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :category %>
-  <%= f.select :category, options_for_select(['Citadine', 'Familiale', 'SUV', 'Sportive']) %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
-<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+      <h3>Add your car details</h3>
+
+      <%= form_with model: @car do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :category %>
+        <%= f.select :category, options_for_select(['Citadine', 'Familiale', 'SUV', 'Sportive']) %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit %>
+      <% end %>
+
+
+      </div>
+  </div>
+</div>

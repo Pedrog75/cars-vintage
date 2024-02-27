@@ -16,8 +16,7 @@ before_action :set_car, only: [:new, :create]
       render :new, status: :unprocessable_entity
     end
   end
-
-  end
+  
   private
 
   def set_car

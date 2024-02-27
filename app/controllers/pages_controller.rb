@@ -7,8 +7,6 @@ class PagesController < ApplicationController
     @recent_car = current_user.cars
   end
 
-  def edit
-    
-  end
+  
 
  end

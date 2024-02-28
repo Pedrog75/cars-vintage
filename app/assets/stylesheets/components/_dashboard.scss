@@ -1,0 +1,26 @@
+.offer {
+  margin-bottom: 20px; /* Espacement entre chaque offre */
+  padding: 20px; /* Remplissage à l'intérieur de chaque offre */
+  border: 1px solid #ccc; /* Bordure autour de chaque offre */
+  border-radius: 5px; /* Coins arrondis */
+}
+
+.offer h3 {
+  margin-top: 0; /* Supprime la marge supérieure du titre */
+}
+
+.offer p {
+  margin-bottom: 10px; /* Espacement entre chaque paragraphe */
+}
+
+
+.small-btn {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-danger.small-btn:hover {
+  background-color: #dc3545; /* Rouge */
+  border-color: #dc3545; /* Bordure rouge */
+  color: #fff; /* Texte blanc */
+}

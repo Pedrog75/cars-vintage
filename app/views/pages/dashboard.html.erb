@@ -1,24 +1,36 @@
-<h1>Dashboard</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Dashboard</h1>
+      <p>I'm here</p>
+      <h2>My offers</h2>
 
-<p>I'm here</p>
-<h2>My offers</h2>
-<% if @recent_car %>
-  <p>Dernière offre de location créée :</p>
-  <ul>
-    <% @recent_car.each do |car|%>
-      <li>Nom de la voiture: <%= car.name %></li>
-      <li>Prix <%= car.price %></li>
-      <li>Catégorie <%= car.category %></li>
-      <li><%= link_to "Modifier mon offre", edit_car_path(car) %></li>
-      <li><%= link_to "Supprimer mon offre", car_path(car), data: {turbo_method: :delete, turbo_confirm: 'Are you sure'} %></li>
+      <% if @recent_car.any? %>
+        <% @recent_car.each do |car| %>
+          <div class="offer">
+            <h3>Nom de la voiture: <%= car.name %></h3>
+            <p>Prix: <%= car.price %></p>
+            <p>Catégorie: <%= car.category %></p>
 
-      <% if car.photo.attached? %>
-        <%= cl_image_tag car.photo.key, width: 400, height: 300, crop: :fill %>
+            <!-- Boutons "Modifier mon offre" et "Supprimer mon offre" avec styles personnalisés -->
+            <div class="button-group">
+              <%= link_to "Modifier mon offre", edit_car_path(car), class: "btn btn-primary small-btn", style: "border-radius: 20px;" %>
+              <%= link_to "Supprimer mon offre", car_path(car), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger small-btn", style: "border-radius: 20px;" %>
+            </div>
+
+            <!-- Affichage de la photo de la voiture s'il y en a une -->
+            <% if car.photo.attached? %>
+              <%= cl_image_tag car.photo.key, width: 400, height: 300, crop: :fill %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Vous n'avez pas encore d'offre</p>
       <% end %>
-    <% end %>
-  <% else %>
-    <p>Vous n'avez pas encore d'offre</p>
-  </ul>
-<% end %>
 
-<%= link_to "Create an offer", new_car_path %>
+      <%= link_to "Create an offer", new_car_path, class: "btn btn-success", style: "border-radius: 20px;" %>
+    </div>
+  </div>
+</div>
+
+<div class="push"></div> <!-- Div vide pour pousser le footer vers le bas -->

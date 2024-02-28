@@ -1,0 +1,33 @@
+.search-form {
+  margin-bottom: 20px; /* Ajoute un espace en bas du formulaire */
+  display: flex; /* Utilise Flexbox pour disposer les éléments horizontalement */
+}
+
+.search-form input[type="text"] {
+  flex: 1; /* Fait en sorte que le champ de texte prenne le plus d'espace possible */
+  padding: 10px; /* Ajoute du remplissage autour du champ de texte */
+  border-radius: 20px; /* Arrondit les coins du champ de texte */
+  border: 1px solid #ccc; /* Ajoute une bordure grise autour du champ de texte */
+  outline: none; /* Supprime la bordure d'accentuation au clic */
+}
+
+.search-form input[type="submit"] {
+  padding: 10px 20px; /* Ajoute du remplissage au bouton de soumission */
+  border-radius: 20px; /* Arrondit les coins du bouton */
+  background-color: #fd5c63; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Supprime la bordure du bouton */
+  cursor: pointer; /* Change le curseur au survol du bouton */
+  margin-left: 10px; /* Ajoute une marge à gauche pour séparer le bouton du champ de texte */
+}
+
+.search-form input[type="submit"]:hover {
+  background-color: #f04046; /* Couleur de fond du bouton au survol */
+}
+
+.search-container {
+  display: flex; /* Utilise Flexbox pour centrer le contenu */
+  justify-content: center; /* Centre horizontalement le contenu */
+  align-items: center; /* Centre verticalement le contenu */
+  height: 80px; /* Définit la hauteur de la barre de recherche */
+}

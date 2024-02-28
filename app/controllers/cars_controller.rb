@@ -3,6 +3,11 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
+    if params[:search].present?
+      @cars = Car.where("name LIKE ?", "%#{params[:search]}%")
+      else
+      @cars = Car.all
+    end
   end
 
   def show

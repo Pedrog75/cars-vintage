@@ -8,15 +8,22 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 require 'faker'
+require "open-uri"
 
-user = User.find(1)
+User.create(
+  email: "johndoe@example.com",
+  password: "password"
+)
 
 10.times do
-  Car.create(
+  car = Car.create(
     name: Faker::Vehicle.make_and_model,
     category: Faker::Vehicle.version,
     description: Faker::Vehicle.standard_specs,
     price: 100,
-    user_id: user.id
+    user_id: User.first.id
   )
+
+  file = URI.open("https://source.unsplash.com/random/?car-#{Time.current.seconds_since_midnight}")
+  car.photo.attach(io: file, filename: "car.png", content_type: "image/png")
 end

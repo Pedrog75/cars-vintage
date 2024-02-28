@@ -1,12 +1,12 @@
 <div class="container">
   <!-- Formulaire de recherche -->
 
-  <h1>Vintage Cars</h1>
-  <p>Find out the best cars in the market</p>
+  <p class="title">Find out the best car deals in the market</p>
+
   <div class="search-container">
     <%= form_with(url: cars_path, method: "get", class: "search-form") do |form| %>
-      <%= form.text_field :search, placeholder: "Rechercher votre voiture..." %>
-      <%= form.submit "Rechercher" %>
+      <%= form.text_field :search, placeholder: "Find a car..." %>
+      <%= form.submit "Search" %>
     <% end %>
   </div>
 
@@ -17,7 +17,7 @@
         <% @cars.each do |car| %>
           <%= link_to car_path(car), style: "text-decoration: none;" do %>
             <div class="card-trip">
-              <img src="https://source.unsplash.com/random/?car" />
+              <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
               <div class="card-trip-infos">
                 <div>
                   <h2><%= car.name %></h2>

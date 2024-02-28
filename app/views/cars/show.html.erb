@@ -5,6 +5,11 @@
         <div class="card-body">
           <h1 class="card-title mb-4"><%= @car.name %></h1>
           <h5 class="card-subtitle mb-3 text-muted"><%= @car.category %></h5>
+          <% if @car.photo.attached? %>
+            <div class="mb-4">
+              <%= image_tag @car.photo, class: "card-img-top", alt: "Car picture", style: "border-radius: 10px;" %>
+            </div>
+          <% end %>
           <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
           <p class="card-text car-description"><%= @car.description %></p>
           <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>

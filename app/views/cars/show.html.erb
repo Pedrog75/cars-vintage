@@ -10,12 +10,7 @@
     <h3 ><%= @car.name %></h3>
     <h5 class="card-title"><%= @car.category %></h5>
     <ul class="card-text">
-    <!--!>
-    <% @car.description.each do |item| %>
-      <li><%= item %></li>
-    <% end %>
-    </ul>
-  <-->
+
     <p class="card-text"><%= @car.price %></p>
     <button type="button" class="btn btn-success">
     <%= link_to 'Book this car', new_car_booking_path(@car) %>

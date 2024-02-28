@@ -28,7 +28,12 @@ gem "jbuilder"
 
 gem "devise"
 
+
+gem "geocoder"
+
+
 gem 'faker'
+
 
 
 # Use Redis adapter to run Action Cable in production

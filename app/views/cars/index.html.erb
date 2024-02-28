@@ -5,8 +5,20 @@
 
   <div class="search-container">
     <%= form_with(url: cars_path, method: "get", class: "search-form") do |form| %>
-      <%= form.text_field :search, placeholder: "Find a car..." %>
+      <div class="form-group">
+        <%= form.label :name, "Name" %>
+        <%= form.text_field :search, placeholder: "Car Name" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :category, "Category" %>
+        <%= form.text_field :category, placeholder: "Car Category" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :price, "Price" %>
+        <%= form.text_field :price, placeholder: "Car Price" %>
+      </div>
       <%= form.submit "Search" %>
+      <%= link_to 'Clear my search', root_path, class: 'btn btn-secondary' %>
     <% end %>
   </div>
 
@@ -15,7 +27,6 @@
       <!-- Cards for each car -->
       <div class="cards">
         <% @cars.each do |car| %>
-          <%= link_to car_path(car), style: "text-decoration: none;" do %>
             <div class="card-trip">
               <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
               <div class="card-trip-infos">
@@ -26,9 +37,9 @@
                 <h2 class="card-trip-pricing"><%= car.price %>€</h2>
               </div>
             </div>
-          <% end %>
         <% end %>
       </div>
     </div>
   </div>
+
 </div>

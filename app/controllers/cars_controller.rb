@@ -4,9 +4,15 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
     if params[:search].present?
-      @cars = Car.where("name LIKE ?", "%#{params[:search]}%")
-      else
-      @cars = Car.all
+      @cars = @cars.where("name LIKE :search OR category LIKE :search OR price::text LIKE :search", search: "%#{params[:search]}%")
+    end
+
+    if params[:category].present?
+      @cars = @cars.where("category LIKE ?", "%#{params[:category]}%")
+    end
+
+    if params[:price].present?
+      @cars = @cars.where("price::text LIKE ?", "%#{params[:price]}%")
     end
   end
 

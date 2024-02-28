@@ -1,7 +1,6 @@
 <h1>Dashboard</h1>
 
-<p>I'm here</p>
-<h2>My offers</h2>
+<!-- <h2>My offers</h2>
 <% if @recent_car %>
   <p>Dernière offre de location créée :</p>
   <ul>
@@ -21,4 +20,18 @@
   </ul>
 <% end %>
 
-<%= link_to "Create an offer", new_car_path %>
+<%= link_to "Create an offer", new_car_path %> -->
+
+<h2>My bookings</h2>
+<% if @recent_bookings.any? %>
+  <ul>
+    <% @recent_bookings.each do |booking| %>
+      <li>Start Date: <%= booking.start_date %></li>
+      <li>End Date: <%= booking.end_date %></li>
+      <li>Car: <%= booking.car.name %></li>
+      <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>You don't have any bookings yet.</p>
+<% end %>

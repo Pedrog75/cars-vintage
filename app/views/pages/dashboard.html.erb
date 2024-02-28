@@ -1,51 +1,33 @@
+<!-- app/views/pages/dashboard.html.erb -->
 <div class="container">
   <div class="row">
     <div class="col">
-      <h1>Dashboard</h1>
-      <p>I'm here</p>
+      <!-- Section "My bookings" -->
+      <h2>My bookings</h2>
+      <% if @recent_bookings.any? %>
+        <div class="bookings">
+          <% @recent_bookings.each do |booking| %>
+            <div class="booking">
+              <h3>Start Date: <%= booking.start_date %></h3>
+              <p>End Date: <%= booking.end_date %></p>
+              <p>Car: <%= booking.car.name %></p>
+              <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
 
-      <h2>My offers</h2>
-      <% if @recent_car.any? %>
-        <% @recent_car.each do |car| %>
-          <div class="offer">
-            <h3>Nom de la voiture: <%= car.name %></h3>
-            <p>Prix: <%= car.price %></p>
-            <p>Catégorie: <%= car.category %></p>
+              <!-- Boutons pour modifier et supprimer la réservation -->
+              <div class="button-group">
+                <% if current_user == booking.user %>
+                  <%= link_to "Modifier", edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" %>
+                 <%= link_to "Supprimer mon offre", booking_path(booking), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger small-btn", style: "border-radius: 20px;" %>
 
-            <!-- ... Other offer details ... -->
 
-            <!-- Boutons "Modifier mon offre" et "Supprimer mon offre" avec styles personnalisés -->
-            <div class="button-group">
-              <%= link_to "Modifier mon offre", edit_car_path(car), class: "btn btn-primary small-btn", style: "border-radius: 20px;" %>
-              <%= link_to "Supprimer mon offre", car_path(car), data: {turbo_method: :delete, turbo_confirm: 'Are you sure'}, class: "btn btn-danger small-btn", style: "border-radius: 20px;" %>
+                <% end %>
+              </div>
             </div>
-            <!-- Affichage de la photo de la voiture s'il y en a une -->
-            <% if car.photo.attached? %>
-              <%= cl_image_tag car.photo.key, width: 400, height: 300, crop: :fill %>
-            <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% else %>
-        <p>Vous n'avez pas encore d'offre</p>
+        <p>You don't have any bookings yet.</p>
       <% end %>
-
-      <%= link_to "Create an offer", new_car_path, class: "btn btn-success", style: "border-radius: 20px;" %>
     </div>
   </div>
-
-  <div class="push"></div> <!-- Div vide pour pousser le footer vers le bas -->
-
-  <h2>My bookings</h2>
-  <% if @recent_bookings.any? %>
-    <ul>
-      <% @recent_bookings.each do |booking| %>
-        <li>Start Date: <%= booking.start_date %></li>
-        <li>End Date: <%= booking.end_date %></li>
-        <li>Car: <%= booking.car.name %></li>
-        <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
-      <% end %>
-    </ul>
-  <% else %>
-    <p>You don't have any bookings yet.</p>
-  <% end %>
 </div>

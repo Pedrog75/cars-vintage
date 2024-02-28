@@ -10,15 +10,15 @@ Rails.application.routes.draw do
       resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:show] do
-    member do
-      patch 'accept'
-      patch 'deny'
-    end
-    # show, :index dans dashboard
-    # booking /ACCEPT
-    # booking /DENY
+  # config/routes.rb
+
+resources :bookings, only: [:show, :edit, :update, :destroy] do
+  member do
+    patch 'accept'
+    patch 'deny'
   end
+end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

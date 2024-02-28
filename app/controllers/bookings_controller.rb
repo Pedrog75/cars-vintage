@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
-before_action :set_car, only: [:new, :create]
+before_action :set_car, only: [:new, :create, :update, :destroy]
+before_action :set_booking, only: [:edit, :update, :destroy]
 
   def new
-    @car = Car.find(params[:car_id])
     @booking = Booking.new
   end
+
 
   def create
     @booking = Booking.new(booking_params)
@@ -17,13 +18,37 @@ before_action :set_car, only: [:new, :create]
     end
   end
 
+
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+
+  def update
+    if @booking.update(booking_params)
+      redirect_to dashboard_path, notice: 'Booking was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+    def destroy
+      @booking.destroy
+      redirect_to dashboard_path, notice: 'Booking was successfully destroyed.'
+    end
+
+
   private
 
-  def set_car
-    @car = Car.find(params[:car_id])
-  end
+    def set_car
+      @car = Car.find(params[:car_id])
+    end
 
-  def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
-  end
+    def set_booking
+      @booking = Booking.find(params[:id])
+    end
+
+    def booking_params
+      params.require(:booking).permit(:start_date, :end_date)
+    end
 end

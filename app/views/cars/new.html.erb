@@ -1,24 +1,18 @@
-
 <div class="container">
   <div class="row">
     <div class="col">
-<h3>Enter your car information</h3>
+      <h3>Enter your car information</h3>
 
-<%= form_with model: @car do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :category %>
-  <%= f.select :category, options_for_select(['Citadine', 'Familiale', 'SUV', 'Sportive']) %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  <%= f.file_field :photo %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
-<% end %>
-      
- 
-      </div>
+      <%= simple_form_for @car do |f| %>
+        <%= f.input :name %>
+        <%= f.input :category, collection: ['Citadine', 'Familiale', 'SUV', 'Sportive'], include_blank: 'Choose a category' %>
+        <%= f.rich_text_area :description %>
+        <%= f.input :price %>
+        <%= f.input :photo %>
+        <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
   </div>
 </div>

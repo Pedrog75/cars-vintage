@@ -5,8 +5,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @recent_car = current_user.cars
+    @recent_bookings = current_user.bookings
   end
-
-  
-
- end
+end

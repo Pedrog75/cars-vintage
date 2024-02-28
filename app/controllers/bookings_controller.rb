@@ -11,7 +11,7 @@ before_action :set_car, only: [:new, :create]
     @booking.car = @car
     @booking.user = current_user
     if @booking.save
-      redirect_to car_path(@car)
+      redirect_to dashboard_path(@car), notice: 'Booking was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

@@ -13,6 +13,7 @@
     </div>
 
 
+
       <div class="cards">
         <% @cars.each do |car| %>
           <%= link_to car_path(car), style: "text-decoration: none;" do %>
@@ -24,6 +25,19 @@
                   <p><%= car.category %></p>
                 </div>
                 <h2 class="card-trip-pricing"><%= car.price %>€</h2>
+
+    <h1>Vintage Cars</h1>
+    <p>Find out the best cars in the market</p>
+    <div class="cards">
+      <% @cars.each do |car| %>
+        <%= link_to car_path(car), style: "text-decoration: none;" do  %>
+          <div class="card-trip">
+            <img src="https://source.unsplash.com/random/?car" />
+            <div class="card-trip-infos">
+              <div>
+                <h2><%= car.name %></h2>
+                <p><%= car.category %></p>
+
               </div>
             </div>
           <% end %>

@@ -1,15 +1,23 @@
 
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1>Cars details</h1>
-      <p>You can book this car</p>
-      <p><%= @car.name %></p>
-      <p><%= @car.category %></p>
-      <p><%= @car.description %></p>
-      <p><%= @car.price %></p>
-      <%= link_to 'Book this car', new_car_booking_path(@car) %>
-       </div>
+    <div class="col-5">
+
+<div class="card" style="width: auto;">
+    <h1 class="card-title">Cars details</h1>
+  <img src="https://source.unsplash.com/random/?car" class="card-img-top" style="width:500px; height:300px" alt="car picture">
+  <div class="card-body">
+    <h3 ><%= @car.name %></h3>
+    <h5 class="card-title"><%= @car.category %></h5>
+    <ul class="card-text">
+
+    <p class="card-text"><%= @car.price %></p>
+    <button type="button" class="btn btn-success">
+    <%= link_to 'Book this car', new_car_booking_path(@car) %>
+    </button>
   </div>
 </div>
 
+       </div>
+  </div>
+</div>

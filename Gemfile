@@ -28,7 +28,17 @@ gem "jbuilder"
 
 gem "devise"
 
+<<<<<<< HEAD
 gem "pg_search"
+=======
+
+gem "geocoder"
+
+
+gem 'faker'
+
+>>>>>>> master
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -65,7 +75,6 @@ group :development do
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
-gem 'faker'
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"

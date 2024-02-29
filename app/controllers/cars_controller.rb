@@ -22,6 +22,7 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find(params[:id])
+    @booking = Booking.new(car: @car) # Initialiser une nouvelle réservation pour cette voiture
   end
 
   def new
@@ -30,8 +31,13 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.save
-    redirect_to dashboard_path
+    @car.user = current_user
+
+    if @car.save
+      redirect_to dashboard_path, notice: "Car successfully added"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -53,6 +59,6 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:name, :category, :description, :price, :user_id, :photo)
+    params.require(:car).permit(:name, :category, :description, :price, :address, :photo)
   end
 end

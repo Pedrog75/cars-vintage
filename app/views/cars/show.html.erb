@@ -5,17 +5,17 @@
         <div class="card-body">
           <h1 class="card-title mb-4"><%= @car.name %></h1>
           <h5 class="card-subtitle mb-3 text-muted"><%= @car.category %></h5>
-          <% if @car.photo.attached? %>
-            <div class="mb-4">
-              <%= image_tag @car.photo, class: "card-img-top", alt: "Car picture", style: "border-radius: 10px;" %>
-            </div>
-          <% end %>
-          <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
-          <p class="card-text car-description"><%= @car.description %></p>
-          <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>
-          <button type="button" class="btn btn-primary" style="border-radius: 5px;">
-            <%= link_to 'Book this car', new_car_booking_path(@car), class: "text-white text-decoration-none" %>
-          </button>
+
+              <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
+              <p class="card-text car-description"><%= @car.description %></p>
+              <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>
+            <%# reservation avec toggle %>
+              <div data-controller="toggle" class="mt-5">
+              <button class="btn btn-outline-primary mb-3" data-action="click->toggle#fire">make a reservation</button>
+              <div data-toggle-target="togglableElement" class="d-none">
+              <%= render "form", car: @car, booking: @booking %>
+              </div>
+
         </div>
       </div>
     </div>

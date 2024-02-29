@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-before_action :set_car, only: [:new, :create, :update, :destroy]
-before_action :set_booking, only: [:edit, :update, :destroy]
+  before_action :set_car, only: [:new, :create, :update]
+  before_action :set_booking, only: [:edit, :update]
 
   def new
     @booking = Booking.new
@@ -32,10 +32,12 @@ before_action :set_booking, only: [:edit, :update, :destroy]
     end
   end
 
-    def destroy
-      @booking.destroy
-      redirect_to dashboard_path, notice: 'Booking was successfully destroyed.'
-    end
+  def destroy
+
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path, notice: 'Booking was successfully destroyed.'
+  end
 
 
   private

@@ -11,17 +11,43 @@
               <h3>Start Date: <%= booking.start_date %></h3>
               <p>End Date: <%= booking.end_date %></p>
               <p>Car: <%= booking.car.name %></p>
+              <p>Address: <%= booking.car.address %></p>
               <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
 
               <!-- Boutons pour modifier et supprimer la réservation -->
               <div class="button-group">
                 <% if current_user == booking.user %>
-                  <%= link_to "Modifier", edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" %>
-                 <%= link_to "Supprimer mon offre", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-primary", style: "border-radius: 20px;" %>
+                  <%= link_to "Modify", edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" %>
+                 <%= link_to "Delete my booking", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-primary", style: "border-radius: 20px;" %>
 
 
 
                 <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>You don't have any bookings yet.</p>
+      <% end %>
+    </div>
+    <div class="col">
+      <!-- Section "My bookings" -->
+      <h2>My cars</h2>
+      <% if @cars.any? %>
+        <div>
+          <% @cars.each do |car| %>
+            <div>
+              <h3>Name: <%= car.name %></h3>
+              <p>Category: <%= car.category %></p>
+              <p>Price: <%= car.price %></p>
+               <p>Address: <%= car.address %></p>
+              <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
+
+              <!-- Boutons pour modifier et supprimer la réservation -->
+              <div>
+                <%= link_to "Modify", edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" %>
+                <%= link_to "Delete my offer", car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-primary", style: "border-radius: 20px;" %>
               </div>
             </div>
           <% end %>

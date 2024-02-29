@@ -15,12 +15,14 @@ User.create(
   password: "password"
 )
 
+Car.delete_all
+
 10.times do
   car = Car.create(
     name: Faker::Vehicle.make_and_model,
     category: Faker::Vehicle.version,
     description: Faker::Vehicle.standard_specs,
-    price: 100,
+    price: (rand(10) + 1) * 50,
     user_id: User.first.id
   )
 

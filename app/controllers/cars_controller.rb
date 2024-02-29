@@ -4,15 +4,19 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all
     if params[:search].present?
-      @cars = @cars.where("name LIKE :search OR category LIKE :search OR price::text LIKE :search", search: "%#{params[:search]}%")
+      @cars = @cars.search_by_name_and_description(params[:search])
     end
 
     if params[:category].present?
       @cars = @cars.where("category LIKE ?", "%#{params[:category]}%")
     end
 
-    if params[:price].present?
-      @cars = @cars.where("price::text LIKE ?", "%#{params[:price]}%")
+    if params[:price_from].present?
+      @cars = @cars.where("price >= ?", params[:price_from].to_i)
+    end
+
+    if params[:price_to].present?
+      @cars = @cars.where("price <= ?", params[:price_to].to_i)
     end
   end
 

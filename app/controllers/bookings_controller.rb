@@ -52,5 +52,10 @@ class BookingsController < ApplicationController
 
     def booking_params
       params.require(:booking).permit(:start_date, :end_date)
+      # if booking_params[:start_date].include?(' to ')
+      #   start_date, end_date = booking_params[:start_date].split(' to ')
+      #   booking_params[:start_date] = start_date
+      #   booking_params[:end_date] = end_date
+      # end
     end
 end

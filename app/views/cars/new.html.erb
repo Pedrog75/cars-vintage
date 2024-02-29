@@ -5,6 +5,7 @@
 
       <%= simple_form_for @car do |f| %>
         <%= f.input :name %>
+         <%= f.input :address %>
         <%= f.input :category, collection: ['Citadine', 'Familiale', 'SUV', 'Sportive'], include_blank: 'Choose a category' %>
         <%= f.rich_text_area :description %>
         <%= f.input :price %>

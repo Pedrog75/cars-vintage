@@ -11,10 +11,28 @@
   outline: none; /* Supprime la bordure d'accentuation au clic */
 }
 
+.search-form select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: #757575;
+}
+
 .search-form input[type="submit"] {
   padding: 10px 20px; /* Ajoute du remplissage au bouton de soumission */
   border-radius: 20px; /* Arrondit les coins du bouton */
   background-color: #fd5c63; /* Couleur de fond du bouton */
+  color: #fff; /* Couleur du texte du bouton */
+  border: none; /* Supprime la bordure du bouton */
+  cursor: pointer; /* Change le curseur au survol du bouton */
+  margin-left: 10px; /* Ajoute une marge à gauche pour séparer le bouton du champ de texte */
+}
+
+.search-form .btn {
+  padding: 10px 20px; /* Ajoute du remplissage au bouton de soumission */
+  border-radius: 20px; /* Arrondit les coins du bouton */
   color: #fff; /* Couleur du texte du bouton */
   border: none; /* Supprime la bordure du bouton */
   cursor: pointer; /* Change le curseur au survol du bouton */

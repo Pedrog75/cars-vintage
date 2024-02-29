@@ -1,27 +1,30 @@
-<!-- app/views/pages/dashboard.html.erb -->
 <div class="container">
   <div class="row">
-    <div class="col">
-      <!-- Section "My bookings" -->
+    <!-- Colonne pour "My bookings" -->
+    <div class="col-md-6">
       <h2>My bookings</h2>
-      <% if @recent_bookings.any? %>
+      <% if @recent_bookings.present? %>
         <div class="bookings">
           <% @recent_bookings.each do |booking| %>
-            <div class="booking">
-              <h3>Start Date: <%= booking.start_date %></h3>
-              <p>End Date: <%= booking.end_date %></p>
-              <p>Car: <%= booking.car.name %></p>
-              <p>Address: <%= booking.car.address %></p>
-              <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
+            <div class="card">
 
+              <% if booking.car.photo.attached? %>
+          <%= image_tag booking.car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
+        <% end %>>
+
+              <h3>Car: <%= booking.car.name %></h3>
+              <p>Start Date: <%= booking.start_date %></p>
+              <p>End Date: <%= booking.end_date %></p>
+              <p>Address: <%= booking.car.address %></p>
               <!-- Boutons pour modifier et supprimer la réservation -->
               <div class="button-group">
                 <% if current_user == booking.user %>
-                  <%= link_to "Modify", edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" %>
-                 <%= link_to "Delete my booking", booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-primary", style: "border-radius: 20px;" %>
-
-
-
+                  <%= link_to edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -31,29 +34,37 @@
         <p>You don't have any bookings yet.</p>
       <% end %>
     </div>
-    <div class="col">
-      <!-- Section "My bookings" -->
+
+    <!-- Colonne pour "My cars" -->
+    <div class="col-md-6">
       <h2>My cars</h2>
       <% if @cars.any? %>
-        <div>
+        <div class="cars">
           <% @cars.each do |car| %>
-            <div>
+            <div class="card">
+       <% if car.photo.attached? %>
+  <%= image_tag car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
+<% end %>
+
+
               <h3>Name: <%= car.name %></h3>
               <p>Category: <%= car.category %></p>
               <p>Price: <%= car.price %></p>
-               <p>Address: <%= car.address %></p>
-              <!-- Ajoutez d'autres détails de la réservation que vous souhaitez afficher -->
-
-              <!-- Boutons pour modifier et supprimer la réservation -->
-              <div>
-                <%= link_to "Modify", edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" %>
-                <%= link_to "Delete my offer", car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger btn-primary", style: "border-radius: 20px;" %>
+              <p>Address: <%= car.address %></p>
+              <!-- Boutons pour modifier et supprimer la voiture -->
+              <div class="button-group">
+                <%= link_to edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                  <i class="fas fa-pencil-alt"></i>
+                <% end %>
+                <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
               </div>
             </div>
           <% end %>
         </div>
       <% else %>
-        <p>You don't have any bookings yet.</p>
+        <p>You don't have any cars yet.</p>
       <% end %>
     </div>
   </div>

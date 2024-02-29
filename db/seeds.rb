@@ -13,16 +13,30 @@ Booking.delete_all
 Car.delete_all
 
 
+
+User.create(
+  email: "test@test.com",
+  password: "azerty"
+)
 User.create(
   email: "johndoe@example.com",
   password: "password"
 )
 
-10.times do
+Car.delete_all
+
+categories = ['Citadine', 'Familiale', 'SUV', 'Sportive']
+
+20.times do
+  description = "<ul>"
+  rand(3..5).times do
+    description << "<li>#{Faker::Vehicle.standard_specs.sample}</li>"
+  end
+  description << "</ul>"
   car = Car.create(
     name: Faker::Vehicle.make_and_model,
-    category: Faker::Vehicle.version,
-    description: Faker::Vehicle.standard_specs,
+    category: categories.sample,
+    description: description,
     address: Faker::Address.full_address,
     price: (rand(10) + 1) * 50,
     user_id: User.first.id

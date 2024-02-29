@@ -1,0 +1,14 @@
+ <div class="card-trip d-flex flex-column">
+  <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
+  <div class="card-trip-infos flex-column flex-grow-1">
+    <div>
+      <h1><%= car.name %></h1>
+      <p class="mb-3"><%= car.category %></p>
+      <div class="card-trip-description"><%= car.description %></div>
+    </div>
+    <div class="align-items-center d-flex justify-content-between">
+      <p><%= link_to "See this car", car_path(car)%></p>
+      <h2 class="card-trip-pricing"><%= car.price %>€</h2>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row justify-content-center"> <!-- Utilisation de justify-content-center pour centrer le contenu -->
+    <div class="col-md-6 my-5"> <!-- Ajout de classes de colonne pour spécifier la largeur et de my-5 pour un espacement en haut et en bas -->
+      <h3>Enter your car information</h3>
+
+      <%= simple_form_for car do |f| %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :category, collection: ['Citadine', 'Familiale', 'SUV', 'Sportive'], include_blank: 'Choose a category' %>
+        <%= f.rich_text_area :description %>
+        <%= f.input :price %>
+        <%= f.input :photo %>
+        <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

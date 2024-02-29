@@ -59,8 +59,13 @@ class CarsController < ApplicationController
 
   def destroy
     @car = Car.find(params[:id])
-    @car.destroy
-    redirect_to dashboard_path, status: :see_other
+    if @car.bookings.exists?
+      flash[:alert] = "You cannot delete this car because it has bookings associated with it."
+      redirect_to dashboard_path
+    else
+      @car.destroy
+      redirect_to dashboard_path, notice: "Car successfully deleted."
+    end
   end
 
   private

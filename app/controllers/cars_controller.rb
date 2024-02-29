@@ -30,6 +30,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @booking = Booking.new(car: @car) # Initialiser une nouvelle réservation pour cette voiture
+    @markers = [{ lat: @car.latitude, lng: @car.longitude }]
   end
 
   def new

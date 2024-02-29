@@ -6,10 +6,10 @@ export default class extends Controller {
   static targets = [ "startTime", "endTime" ]
 
   connect() {
-
     flatpickr(this.startTimeTarget, {
       mode: "range"
     })
+
   }
   
 }

@@ -6,19 +6,10 @@
           <h1 class="card-title mb-4"><%= @car.name %></h1>
           <h5 class="card-subtitle mb-3 text-muted"><%= @car.category %></h5>
 
-
           <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
           <p class="card-text car-description"><%= @car.description %></p>
           <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>
           <p class="card-text"><strong>Address: <%= @car.address %></strong></p> <!-- Display address -->
-
-            <%# reservation avec toggle %>
-              <div data-controller="toggle" class="mt-5">
-              <button class="btn btn-outline-primary mb-3" data-action="click->toggle#fire">make a reservation</button>
-              <div data-toggle-target="togglableElement" class="d-none">
-              <%= render "form", car: @car, booking: @booking %>
-              </div>
-
 
           <%# reservation avec toggle %>
           <div data-controller="toggle" class="mt-5">

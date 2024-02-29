@@ -1,3 +1,17 @@
+<!-- Icône "plus" pour ajouter une nouvelle voiture -->
+  <div class="container">
+  <div class="row justify-content-end mb-4">
+    <div class="col-md-6 text-right">
+      <%= link_to new_car_path, class: "btn btn-outline-secondary", style: "border-radius: 20px;" do %>
+        <i class="fa-solid fa-plus fa-2xs"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class="container">
   <div class="row">
     <!-- Colonne pour "My bookings" -->
@@ -5,32 +19,31 @@
       <h2>My bookings</h2>
       <% if @recent_bookings.present? %>
         <div class="bookings">
+          <!-- Liste des réservations actuelles -->
           <% @recent_bookings.each do |booking| %>
-
             <div class="card-trip">
               <% if booking.car.photo.attached? %>
                 <%= image_tag booking.car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
               <% end %>
               <div class="card-trip-infos">
                 <div>
-                  <h3>Car: <%= booking.car.name %></h3>
+                  <h3> <%= booking.car.name %></h3>
                   <p>Start Date: <%= booking.start_date %></p>
                   <p>End Date: <%= booking.end_date %></p>
                   <p>Address: <%= booking.car.address %></p>
                 </div>
                 <div class="button-group">
                   <% if current_user == booking.user %>
-                    <%= link_to edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                    <%= link_to edit_booking_path(booking), class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                       <i class="fas fa-pencil-alt"></i>
                     <% end %>
-                    <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                    <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                       <i class="fas fa-trash-alt"></i>
                     <% end %>
                   <% end %>
                 </div>
               </div>
             </div>
-
             <br> <!-- Espace entre deux instances de "My bookings" -->
           <% end %>
         </div>
@@ -44,30 +57,29 @@
       <h2>My cars</h2>
       <% if @cars.any? %>
         <div class="cars">
+          <!-- Liste des voitures actuelle -->
           <% @cars.each do |car| %>
-
             <div class="card-trip">
               <% if car.photo.attached? %>
                 <%= image_tag car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
               <% end %>
               <div class="card-trip-infos">
                 <div>
-                  <h3>Name: <%= car.name %></h3>
+                  <h3><%= car.name %></h3>
                   <p>Category: <%= car.category %></p>
                   <p>Price: <%= car.price %></p>
                   <p>Address: <%= car.address %></p>
                 </div>
                 <div class="button-group">
-                  <%= link_to edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                  <%= link_to edit_car_path(car), class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                     <i class="fas fa-pencil-alt"></i>
                   <% end %>
-                  <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                  <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </div>
               </div>
             </div>
-
             <br> <!-- Espace entre deux instances de "My cars" -->
           <% end %>
         </div>
@@ -76,5 +88,6 @@
       <% end %>
     </div>
   </div>
-</div>
 
+
+</div>

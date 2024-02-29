@@ -13,7 +13,7 @@
 
           <%# reservation avec toggle %>
           <div data-controller="toggle" class="mt-5">
-            <button class="btn btn-outline-primary mb-3" data-action="click->toggle#fire">make a reservation</button>
+            <button class="btn btn-primary mb-3" data-action="click->toggle#fire">Make a reservation</button>
             <div data-toggle-target="togglableElement" class="d-none">
               <%= render "form", car: @car, booking: @booking %>
             </div>

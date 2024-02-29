@@ -5,13 +5,12 @@
 <%# il faut ouvrir un ticket pour revoir mes dates %>
 
   <%= simple_form_for [@car, @booking], html:{data: { controller: "datepicker" }} do |f| %>
-    <%= f.input :start_date,
-              as: :string,
-              input_html:  { data: { datepicker_target: "startTime", } }%>
+    <%= f.input :booking_dates,
+                label: 'Booking dates',
+                as: :string,
+                input_html:  { data: { datepicker_target: "bookingDates", } }%>
 
-  <%= f.input :end_date,
-              as: :string,
-              input_html: { data: { datepicker_target: "endTime" } } %>
+
 
   <%= f.submit 'Book this car', class: "btn btn-primary" %>
   <% end %>

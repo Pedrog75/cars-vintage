@@ -9,6 +9,9 @@
 #   end
 require 'faker'
 require "open-uri"
+Booking.delete_all
+Car.delete_all
+
 
 User.create(
   email: "johndoe@example.com",
@@ -20,7 +23,8 @@ User.create(
     name: Faker::Vehicle.make_and_model,
     category: Faker::Vehicle.version,
     description: Faker::Vehicle.standard_specs,
-    price: 100,
+    address: Faker::Address.full_address,
+    price: (rand(10) + 1) * 50,
     user_id: User.first.id
   )
 

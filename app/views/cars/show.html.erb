@@ -5,9 +5,13 @@
         <div class="card-body">
           <h1 class="card-title mb-4"><%= @car.name %></h1>
           <h5 class="card-subtitle mb-3 text-muted"><%= @car.category %></h5>
-              <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
-              <p class="card-text car-description"><%= @car.description %></p>
-              <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>
+
+
+          <img src="<%= @car.photo.url if @car.photo.attached? %>" class="card-img-top mb-4" alt="Car picture" style="border-radius: 10px;">
+          <p class="card-text car-description"><%= @car.description %></p>
+          <p class="card-text"><strong>Price: <%= number_to_currency(@car.price, unit: '€') %></strong></p>
+          <p class="card-text"><strong>Address: <%= @car.address %></strong></p> <!-- Display address -->
+
             <%# reservation avec toggle %>
               <div data-controller="toggle" class="mt-5">
               <button class="btn btn-outline-primary mb-3" data-action="click->toggle#fire">make a reservation</button>
@@ -15,8 +19,32 @@
               <%= render "form", car: @car, booking: @booking %>
               </div>
 
+
+          <%# reservation avec toggle %>
+          <div data-controller="toggle" class="mt-5">
+            <button class="btn btn-outline-primary mb-3" data-action="click->toggle#fire">make a reservation</button>
+            <div data-toggle-target="togglableElement" class="d-none">
+              <%= render "form", car: @car, booking: @booking %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="col-md-6">
+      <div id="map" style="height: 774.9px;"></div>
+    </div>
   </div>
 </div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsZnJpZWQtZm9zc2UiLCJhIjoiY2xzYnVsMnduMDVzODJtbWhqYjVmZG41OCJ9.RYtFu7Bzj5VdG4aaiPTrhA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [2.3381, 48.8693], // Longitude, Latitude
+    zoom: 10.45 // Zoom level
+  });
+</script>

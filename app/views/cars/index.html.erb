@@ -1,49 +1,39 @@
-<div class="container">
+<div class="container" data-controller="search">
   <!-- Formulaire de recherche -->
 
   <p class="title">Find out the best car deals in the market</p>
-<div class="search-container">
-  <%= form_with(url: cars_path, method: "get", class: "search-form") do |form| %>
-    <div class="form-group">
-      <%= form.text_field :search, value: params[:search], placeholder: "Name, description" %>
-    </div>
-    <div class="form-group">
-      <%= form.select :category, options_for_select(['Citadine', 'Familiale', 'SUV', 'Sportive'], params[:category]), { include_blank: "Car Category" }, placeholder: "Car Category" %>
-    </div>
-    <div class="form-group">
-      <%= form.text_field :price_from, value: params[:price_from], placeholder: "Min Price" %>
-    </div>
-    <div class="form-group">
-      <%= form.text_field :price_to, value: params[:price_to], placeholder: "Max Price" %>
-    </div>
-    <div class="form-group">
-      <input type="text" id="location" name="location" placeholder="Enter your address">
-    </div>
-    <%= form.submit "Search" %>
-    <%= link_to 'Clear my search', root_path, class: 'btn btn-secondary' %>
-  <% end %>
-</div>
+  <div class="search-container">
+    <%= form_with(url: cars_path, method: "get", class: "search-form", data: { search_target: "form" }) do |form| %>
+      <div class="form-group">
+        <%= form.text_field :search, value: params[:search], placeholder: "Name, description", data: { action: "keyup->search#handleKeyup" } %>
+      </div>
+      <div class="form-group">
+        <%= form.select :category, options_for_select(@categories, params[:category]), { include_blank: "Car Category" }, placeholder: "Car Category" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :price_from, value: params[:price_from], placeholder: "Min Price" %>
+      </div>
+      <div class="form-group">
+        <%= form.text_field :price_to, value: params[:price_to], placeholder: "Max Price" %>
+      </div>
+      <div class="form-group">
+        <input type="text" id="location" name="location" placeholder="Enter your address">
+      </div>
+      <%= form.submit "Search" %>
+      <%= link_to 'Clear my search', root_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
 
 
   <div class="row">
     <div class="col">
       <!-- Cards for each car -->
-      <div class="cards">
+      <div data-search-target="content" class="cards">
+        <%#= render @cars %>
         <% @cars.each do |car| %>
-            <div class="card-trip">
-              <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
-              <div class="card-trip-infos">
-                <div>
-                  <h1><%= car.name %></h2>
-                  <p><%= car.category %></p>
-                  <p><%= link_to "See this car", car_path(car)%></p>
-                </div>
-                <h2 class="card-trip-pricing"><%= car.price %>€</h2>
-              </div>
-            </div>
+           <%= render "cars/car", car: car %>
         <% end %>
       </div>
     </div>
   </div>
-
 </div>

@@ -2,6 +2,7 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
+    @categories = ['Citadine', 'Familiale', 'SUV', 'Sportive']
     @cars = Car.all
     if params[:search].present?
       @cars = @cars.search_by_name_and_description(params[:search])

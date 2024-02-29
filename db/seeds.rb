@@ -9,6 +9,9 @@
 #   end
 require 'faker'
 require "open-uri"
+Booking.delete_all
+Car.delete_all
+
 
 
 User.create(
@@ -34,6 +37,7 @@ categories = ['Citadine', 'Familiale', 'SUV', 'Sportive']
     name: Faker::Vehicle.make_and_model,
     category: categories.sample,
     description: description,
+    address: Faker::Address.full_address,
     price: (rand(10) + 1) * 50,
     user_id: User.first.id
   )

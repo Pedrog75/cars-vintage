@@ -2,7 +2,10 @@
   <!-- Formulaire de recherche -->
 
   <p class="title">Find out the best car deals in the market</p>
-  <div class="search-container">
+
+  <div class="row">
+    <div class="col">
+      <div class="search-container">
     <%= form_with(url: cars_path, method: "get", class: "search-form", data: { search_target: "form" }) do |form| %>
       <div class="form-group">
         <%= form.text_field :search, value: params[:search], placeholder: "Name, description", data: { action: "keyup->search#handleKeyup" } %>
@@ -23,17 +26,47 @@
       <%= link_to 'Clear my search', root_path, class: 'btn btn-secondary' %>
     <% end %>
   </div>
+</div>
+</div>
 
-
-  <div class="row">
-    <div class="col">
+ 
       <!-- Cards for each car -->
-      <div data-search-target="content" class="cards">
-        <%#= render @cars %>
+ <div class="row">
+    <div class="col-8">
+      <div class="cards">
         <% @cars.each do |car| %>
-           <%= render "cars/car", car: car %>
+            <div class="card-trip">
+              <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
+              <div class="card-trip-infos">
+                <div>
+                  <h1><%= car.name %></h2>
+                  <p><%= car.category %></p>
+                  <p><%= link_to "See this car", car_path(car)%></p>
+                </div>
+                <h2 class="card-trip-pricing"><%= car.price %>€</h2>
+              </div>
+            </div>
         <% end %>
+      </div>
+    </div>
+
+    <div class="col-4">
+          <div id="map" style="height: 600px;"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Mapbox script -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsZnJpZWQtZm9zc2UiLCJhIjoiY2xzYnVsMnduMDVzODJtbWhqYjVmZG41OCJ9.RYtFu7Bzj5VdG4aaiPTrhA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [2.3381, 48.8693], // Longitude, Latitude
+    zoom: 10.45 // Zoom level
+  });
+</script>

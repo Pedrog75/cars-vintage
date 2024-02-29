@@ -19,6 +19,12 @@ class CarsController < ApplicationController
     if params[:price_to].present?
       @cars = @cars.where("price <= ?", params[:price_to].to_i)
     end
+    @markers = @cars.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def show
@@ -35,7 +41,7 @@ class CarsController < ApplicationController
     @car.user = current_user
 
     if @car.save
-      redirect_to dashboard_path, notice: "Car successfully added"
+      redirect_to dashboard_path, notice: "Car successfully "
     else
       render :new, status: :unprocessable_entity
     end

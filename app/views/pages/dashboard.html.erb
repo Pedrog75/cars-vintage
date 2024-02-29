@@ -6,28 +6,32 @@
       <% if @recent_bookings.present? %>
         <div class="bookings">
           <% @recent_bookings.each do |booking| %>
-            <div class="card">
 
+            <div class="card-trip">
               <% if booking.car.photo.attached? %>
-          <%= image_tag booking.car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
-        <% end %>>
-
-              <h3>Car: <%= booking.car.name %></h3>
-              <p>Start Date: <%= booking.start_date %></p>
-              <p>End Date: <%= booking.end_date %></p>
-              <p>Address: <%= booking.car.address %></p>
-              <!-- Boutons pour modifier et supprimer la réservation -->
-              <div class="button-group">
-                <% if current_user == booking.user %>
-                  <%= link_to edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" do %>
-                    <i class="fas fa-pencil-alt"></i>
+                <%= image_tag booking.car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
+              <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h3>Car: <%= booking.car.name %></h3>
+                  <p>Start Date: <%= booking.start_date %></p>
+                  <p>End Date: <%= booking.end_date %></p>
+                  <p>Address: <%= booking.car.address %></p>
+                </div>
+                <div class="button-group">
+                  <% if current_user == booking.user %>
+                    <%= link_to edit_booking_path(booking), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                      <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
                   <% end %>
-                  <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
-                    <i class="fas fa-trash-alt"></i>
-                  <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
+
+            <br> <!-- Espace entre deux instances de "My bookings" -->
           <% end %>
         </div>
       <% else %>
@@ -41,26 +45,30 @@
       <% if @cars.any? %>
         <div class="cars">
           <% @cars.each do |car| %>
-            <div class="card">
-       <% if car.photo.attached? %>
-  <%= image_tag car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
-<% end %>
 
-
-              <h3>Name: <%= car.name %></h3>
-              <p>Category: <%= car.category %></p>
-              <p>Price: <%= car.price %></p>
-              <p>Address: <%= car.address %></p>
-              <!-- Boutons pour modifier et supprimer la voiture -->
-              <div class="button-group">
-                <%= link_to edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" do %>
-                  <i class="fas fa-pencil-alt"></i>
-                <% end %>
-                <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
-                  <i class="fas fa-trash-alt"></i>
-                <% end %>
+            <div class="card-trip">
+              <% if car.photo.attached? %>
+                <%= image_tag car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
+              <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h3>Name: <%= car.name %></h3>
+                  <p>Category: <%= car.category %></p>
+                  <p>Price: <%= car.price %></p>
+                  <p>Address: <%= car.address %></p>
+                </div>
+                <div class="button-group">
+                  <%= link_to edit_car_path(car), class: "btn btn-primary", style: "border-radius: 20px;" do %>
+                    <i class="fas fa-pencil-alt"></i>
+                  <% end %>
+                  <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-danger", style: "border-radius: 20px;" do %>
+                    <i class="fas fa-trash-alt"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
+
+            <br> <!-- Espace entre deux instances de "My cars" -->
           <% end %>
         </div>
       <% else %>
@@ -69,3 +77,4 @@
     </div>
   </div>
 </div>
+

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+<%# il faut ouvrir un ticket pour revoir mes dates %>
+  <%= form_with(model: [car, booking], local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date, class: "form-control", min: Date.today, input_html: { data: { controller: "datepicker" } }, as: :string %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date, class: "form-control", min: Date.today, input_html: { data: { controller: "datepicker" } }, as: :string %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>

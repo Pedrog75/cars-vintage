@@ -2,17 +2,28 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
+    @categories = ['Citadine', 'Familiale', 'SUV', 'Sportive']
     @cars = Car.all
     if params[:search].present?
-      @cars = @cars.where("name LIKE :search OR category LIKE :search OR price::text LIKE :search", search: "%#{params[:search]}%")
+      @cars = @cars.search_by_name_and_description(params[:search])
     end
 
     if params[:category].present?
       @cars = @cars.where("category LIKE ?", "%#{params[:category]}%")
     end
 
-    if params[:price].present?
-      @cars = @cars.where("price::text LIKE ?", "%#{params[:price]}%")
+    if params[:price_from].present?
+      @cars = @cars.where("price >= ?", params[:price_from].to_i)
+    end
+
+    if params[:price_to].present?
+      @cars = @cars.where("price <= ?", params[:price_to].to_i)
+    end
+    @markers = @cars.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
     end
   end
 
@@ -30,7 +41,7 @@ class CarsController < ApplicationController
     @car.user = current_user
 
     if @car.save
-      redirect_to dashboard_path, notice: "Car successfully added"
+      redirect_to dashboard_path, notice: "Car successfully "
     else
       render :new, status: :unprocessable_entity
     end

@@ -17,17 +17,20 @@
 }
 
 .card-trip p {
-  font-size: 12px;
-  opacity: .7;
+  font-size: 18px;
   margin: 0;
+  opacity: .7;
 }
 
+.card-trip .card-trip-description {
+  font-size: 12px;
+  margin: 0;
+}
 
 .card-trip .card-trip-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   position: relative;
 }
 
@@ -42,6 +45,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
+}
+
+.card-trip a {
+  text-decoration: none; /* Supprime le soulignement du lien */
+  color: #007bff; /* Change la couleur du lien si nécessaire */
 }
 
 // Smallest device
@@ -78,3 +86,5 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+

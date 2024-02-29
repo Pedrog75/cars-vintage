@@ -28,6 +28,7 @@ gem "jbuilder"
 
 gem "devise"
 
+gem "pg_search"
 
 gem "geocoder"
 

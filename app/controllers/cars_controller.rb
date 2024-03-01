@@ -19,7 +19,7 @@ class CarsController < ApplicationController
     if params[:price_to].present?
       @cars = @cars.where("price <= ?", params[:price_to].to_i)
     end
-    @cars = Car.geocoded
+    # @cars = Car.geocoded
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,

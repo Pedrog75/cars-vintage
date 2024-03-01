@@ -1,11 +1,12 @@
 <%= link_to car_path(car), style: "text-decoration:none; color:black;" do %>
 <div class="text-decoration-none">
-  <h3 ><%= car.name %></h3>
-  <p><%= car.price %>€</p>
   <% if car.photo.attached? %>
     <%= cl_image_tag car.photo.key, class: "imgpopup" %>
     <% else %>
     <%= "https://source.unsplash.com/random/?car"  %>
    <% end %>
+  <h4><%= car.name %></h4>
+  <p><%= car.category %></p>
+  <p><%= car.price %>€</p>
 </div>
 <% end %>

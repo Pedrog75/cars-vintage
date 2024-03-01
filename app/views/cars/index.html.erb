@@ -34,17 +34,18 @@
     <div class="col-8">
       <div class="cards">
         <% @cars.each do |car| %>
+        <%= link_to car_path(car), style: "text-decoration:none;" do %>
             <div class="card-trip">
               <%= image_tag car.photo.attached? ? cl_image_path(car.photo.key) : "https://source.unsplash.com/random/?car" %>
               <div class="card-trip-infos">
                 <div>
-                  <h1><%= car.name %></h2>
+                  <h6><%= car.name %></h6>
                   <p><%= car.category %></p>
-                  <p><%= link_to "See this car", car_path(car)%></p>
                 </div>
                 <h2 class="card-trip-pricing"><%= car.price %>€</h2>
               </div>
             </div>
+            <% end %>
         <% end %>
       </div>
     </div>

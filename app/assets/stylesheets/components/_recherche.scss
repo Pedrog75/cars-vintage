@@ -9,6 +9,7 @@
   border-radius: 20px; /* Arrondit les coins du champ de texte */
   border: 1px solid #ccc; /* Ajoute une bordure grise autour du champ de texte */
   outline: none; /* Supprime la bordure d'accentuation au clic */
+  background-color: whitesmoke;
 }
 
 .search-form select {
@@ -18,12 +19,13 @@
   border: 1px solid #ccc;
   outline: none;
   color: #757575;
+  background-color: whitesmoke;
 }
 
 .search-form input[type="submit"] {
   padding: 10px 20px; /* Ajoute du remplissage au bouton de soumission */
   border-radius: 20px; /* Arrondit les coins du bouton */
-  background-color: #fd5c63; /* Couleur de fond du bouton */
+  background-color: #3c614f; /* Couleur de fond du bouton */
   color: #fff; /* Couleur du texte du bouton */
   border: none; /* Supprime la bordure du bouton */
   cursor: pointer; /* Change le curseur au survol du bouton */
@@ -33,6 +35,7 @@
 .search-form .btn {
   padding: 10px 20px; /* Ajoute du remplissage au bouton de soumission */
   border-radius: 20px; /* Arrondit les coins du bouton */
+  background-color: #9dc4b1; /* Couleur de fond du bouton */
   color: #fff; /* Couleur du texte du bouton */
   border: none; /* Supprime la bordure du bouton */
   cursor: pointer; /* Change le curseur au survol du bouton */

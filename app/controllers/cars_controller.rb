@@ -19,10 +19,13 @@ class CarsController < ApplicationController
     if params[:price_to].present?
       @cars = @cars.where("price <= ?", params[:price_to].to_i)
     end
-    @markers = @cars.geocoded.map do |flat|
+    @cars = Car.geocoded
+    @markers = @cars.geocoded.map do |car|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: car.latitude,
+        lng: car.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {car: car}),
+        marker_html: render_to_string(partial: "marker", locals: {car: car})
       }
     end
   end
@@ -30,7 +33,14 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     @booking = Booking.new(car: @car) # Initialiser une nouvelle réservation pour cette voiture
-    @markers = [{ lat: @car.latitude, lng: @car.longitude }]
+    @markers = [
+      {
+        lat: @car.latitude,
+        lng: @car.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {car: @car}),
+        marker_html: render_to_string(partial: "marker", locals: {car: @car})
+      }
+    ]
   end
 
   def new

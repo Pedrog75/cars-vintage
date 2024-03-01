@@ -33,10 +33,14 @@
                       </div>
                       <div class="button-group">
                         <% if current_user == booking.user %>
-                          <button class="btn btn-secondary mb-3" data-action="click->toggle#fire">Edit</button>
-                          <div data-toggle-target="togglableElement" class="d-none">
-                            <%= render "booking_edit", booking: booking %>
-                          </div>
+                          <%= button_tag class: "btn btn-outline-secondary mb-3", style: "border-radius: 20px;", data: { action: "click->toggle#fire" } do %>
+                              <i class="fas fa-pencil-alt"></i>
+                            <% end %>
+                            <div data-toggle-target="togglableElement" class="d-none">
+                              <%= render "booking_edit", booking: booking %>
+                            </div>
+
+
                           <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                           <i class="fas fa-trash-alt"></i>
                         <% end %>
@@ -74,13 +78,12 @@
                 </div>
                 <div class="button-group">
 
-
-
-                  <button class="btn btn-secondary mb-3" data-action="click->toggle#fire">Edit</button>
-                  <div data-toggle-target="togglableElement" class="d-none">
-                    <%= render "mycaredit", car: car %>
-                  </div>
-
+                  <%= button_tag class: "btn btn-outline-secondary", style: "border-radius: 20px;", data: { action: "click->toggle#fire" } do %>
+                      <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                    <div data-toggle-target="togglableElement" class="d-none">
+                      <%= render "mycaredit", car: car %>
+                    </div>
                   <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>

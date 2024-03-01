@@ -9,9 +9,9 @@ export default class extends Controller {
   }
   toggleButtonText() {
     const button = this.element.querySelector("button");
-    const buttonText = this.togglableElementTarget.classList.contains("d-none") ? "Make a Reservation" : "Cancel this Booking";
+    const buttonText = this.togglableElementTarget.classList.contains("d-none") ? "Edit" : "Cancel edit";
 
     button.textContent = buttonText;
-    button.classList.toggle("btn-danger", buttonText === "Cancel this Booking");
+    button.classList.toggle("btn-danger", buttonText === "Cancel edit");
   }
 }

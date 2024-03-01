@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_car, only: [:new, :create, :update]
+  before_action :set_car, only: [:new, :create]
   before_action :set_booking, only: [:edit, :update]
 
   def new
@@ -18,15 +18,13 @@ class BookingsController < ApplicationController
     end
   end
 
-
   def edit
     @booking = Booking.find(params[:id])
   end
 
-
   def update
     if @booking.update(booking_params)
-      redirect_to dashboard_path, notice: 'Booking was successfully updated.'
+      redirect_to dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,6 +50,6 @@ class BookingsController < ApplicationController
 
     def booking_params
       params.require(:booking).permit(:booking_dates)
-      
+
     end
 end

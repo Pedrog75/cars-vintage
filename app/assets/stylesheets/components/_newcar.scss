@@ -1,0 +1,67 @@
+// app/assets/stylesheets/cars.scss
+
+.container {
+  .car-form {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      margin-bottom: 30px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: border-color 0.3s ease;
+      font-size: 16px;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+/* app/assets/stylesheets/custom.scss */
+
+.btn-submit {
+  width: 100%; /* Pour que le bouton occupe toute la largeur */
+  margin-top: 1.25rem; /* Espacement en haut */
+}
+
+.btn-primary.btn-submit {
+  /* Styles spécifiques pour le bouton avec les deux classes */
+  /* Vous pouvez personnaliser ces styles selon vos préférences */
+  background-color: #007bff; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: 2px solid #007bff; /* Bordure solide */
+  border-radius: 0.25rem; /* Arrondi des coins */
+  padding: 0.75rem 1.25rem; /* Espacement interne */
+  font-size: 1rem; /* Taille de police */
+  cursor: pointer; /* Curseur de souris */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition douce lors du survol */
+
+  &:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+    border-color: #0056b3; /* Couleur de la bordure au survol */
+  }
+}
+
+
+  }
+}

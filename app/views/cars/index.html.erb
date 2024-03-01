@@ -53,19 +53,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div id="map" style="height: 600px;"></div>
+      <div id="map" style="height: 600px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
   </div>
 </div>
-<!-- Mapbox script -->
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1Ijoid2lsZnJpZWQtZm9zc2UiLCJhIjoiY2xzYnVsMnduMDVzODJtbWhqYjVmZG41OCJ9.RYtFu7Bzj5VdG4aaiPTrhA';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [2.3381, 48.8693], // Longitude, Latitude
-    zoom: 10.45 // Zoom level
-  });
-</script>

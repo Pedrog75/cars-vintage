@@ -33,7 +33,7 @@
                       </div>
                       <div class="button-group">
                         <% if current_user == booking.user %>
-                          <button class="btn btn-primary mb-3" data-action="click->toggle#fire">Edit</button>
+                          <button class="btn btn-secondary mb-3" data-action="click->toggle#fire">Edit</button>
                           <div data-toggle-target="togglableElement" class="d-none">
                             <%= render "booking_edit", booking: booking %>
                           </div>
@@ -73,7 +73,10 @@
                   <p>Address: <%= car.address %></p>
                 </div>
                 <div class="button-group">
-                  <button class="btn btn-primary mb-3" data-action="click->toggle#fire">Edit</button>
+
+
+
+                  <button class="btn btn-secondary mb-3" data-action="click->toggle#fire">Edit</button>
                   <div data-toggle-target="togglableElement" class="d-none">
                     <%= render "mycaredit", car: car %>
                   </div>

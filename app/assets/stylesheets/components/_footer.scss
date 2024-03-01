@@ -2,13 +2,14 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #F4F4F4;
+  background: #0B1614;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 50px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: #588870;
+  margin-top: 20px;
 }
 
 .footer-links {
@@ -17,8 +18,8 @@
 }
 
 .footer-links a {
-  color: black;
-  opacity: 0.15;
+  color: #588870;
+  opacity: 0.7;
   text-decoration: none;
   font-size: 24px;
   padding: 0px 10px;

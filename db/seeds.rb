@@ -78,7 +78,6 @@ addresses = []
   }
 end
 
-
 20.times do |index|
   description = "<ul>"
   rand(3..5).times do

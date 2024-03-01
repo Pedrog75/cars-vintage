@@ -10,8 +10,6 @@
 </div>
 
 
-
-
 <div class="container">
   <div class="row">
     <!-- Colonne pour "My bookings" -->
@@ -26,22 +24,25 @@
                 <%= image_tag booking.car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
               <% end %>
               <div class="card-trip-infos">
-                <div>
-                  <h3> <%= booking.car.name %></h3>
-                  <p>Start Date: <%= booking.start_date %></p>
-                  <p>End Date: <%= booking.end_date %></p>
-                  <p>Address: <%= booking.car.address %></p>
-                </div>
-                <div class="button-group">
-                  <% if current_user == booking.user %>
-                    <%= link_to edit_booking_path(booking), class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
-                      <i class="fas fa-pencil-alt"></i>
-                    <% end %>
-                    <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
+                  <div data-controller="toggle" class="mt-5">
+                      <div>
+                        <h3> <%= booking.car.name %></h3>
+                        <p>Start Date: <%= booking.start_date %></p>
+                        <p>End Date: <%= booking.end_date %></p>
+                        <p>Address: <%= booking.car.address %></p>
+                      </div>
+                      <div class="button-group">
+                        <% if current_user == booking.user %>
+                          <button class="btn btn-primary mb-3" data-action="click->toggle#fire">Edit</button>
+                          <div data-toggle-target="togglableElement" class="d-none">
+                            <%= render "booking_edit", booking: booking %>
+                          </div>
+                          <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
+                          <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                      </div>
                   <% end %>
-                </div>
+                  </div>
               </div>
             </div>
             <br> <!-- Espace entre deux instances de "My bookings" -->
@@ -64,6 +65,7 @@
                 <%= image_tag car.photo, class: "card-img-top card-img-fit", alt: "Car Photo" %>
               <% end %>
               <div class="card-trip-infos">
+              <div data-controller="toggle" class="mt-5">
                 <div>
                   <h3><%= car.name %></h3>
                   <p>Category: <%= car.category %></p>
@@ -71,13 +73,17 @@
                   <p>Address: <%= car.address %></p>
                 </div>
                 <div class="button-group">
-                  <%= link_to edit_car_path(car), class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
-                    <i class="fas fa-pencil-alt"></i>
-                  <% end %>
+                  <button class="btn btn-primary mb-3" data-action="click->toggle#fire">Edit</button>
+                  <div data-toggle-target="togglableElement" class="d-none">
+                    <%= render "mycaredit", car: car %>
+                  </div>
+
                   <%= link_to car_path(car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-outline-secondary", style: "border-radius: 20px;" do %>
                     <i class="fas fa-trash-alt"></i>
                   <% end %>
                 </div>
+
+              </div>
               </div>
             </div>
             <br> <!-- Espace entre deux instances de "My cars" -->

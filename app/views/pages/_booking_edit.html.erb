@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <%= simple_form_for (booking), html:{ method: :put, data: { controller: "datepicker" }} do |f| %>
+    <%= f.input :booking_dates,
+                label: 'Booking dates',
+                as: :string,
+                input_html:  { data: { datepicker_target: "bookingDates", } }%>
+
+
+
+  <%= f.submit 'Book this car', class: "btn btn-primary" %>
+  <% end %>
+    <!--
+      <h2>Réservation de voiture</h2>
+      <%= form_with(model: booking, local: true) do |form| %>
+        <div class="mb-3">
+          <%= form.label :start_date, class: "form-label" %>
+          <%= form.date_field :start_date, class: "form-control", placeholder: "Sélectionnez la date de début", min: Date.today %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :end_date, class: "form-label" %>
+          <%= form.date_field :end_date, class: "form-control", placeholder: "Sélectionnez la date de fin", min: Date.today %>
+        </div>
+
+        <% if booking.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h2><%= pluralize(booking.errors.count, "error") %> prohibited thisbooking from being saved:</h2>
+            <ul>
+              <% booking.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.submit "Réserver", class: "btn btn-primary btn-rounded" %>
+        </div>
+      <% end %>
+      -->
+
+
+    </div>
+  </div>
+</div>
